@@ -35,7 +35,7 @@ namespace Inlämning_3
             GetRandomQuestion();
             CurrentPlayer = player;
             UserNameAndTotalCorrectQ.Text = $"{CurrentPlayer.Name} you have answerd {CorrectQuestions} questions correct";
-            GetProgressBarQuestionvalue();
+           // GetProgressBarQuestionvalue();
             ProgessBarQuestionvalue = GetProgressBarQuestionvalue();
             
         }
@@ -62,12 +62,49 @@ namespace Inlämning_3
         }
         public void GetRandomQuestion() 
         {
+            if (Quiz.AllQuestions.Count != 0) 
+            { 
             currentQuestion = myQuiz.GetRandomQuestion();
             
             QuestionTextBox.Text = currentQuestion.Statement;
             AwnserButton1.Content = currentQuestion.Answers[0];
             AwnserButton2.Content = currentQuestion.Answers[1];
             AwnserButton3.Content = currentQuestion.Answers[2];
+                if (currentQuestion.ImagePath != null)
+                {
+                    string? imagePath = currentQuestion.ImagePath;
+                    Uri imageUri = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+
+                    if (imagePath.StartsWith("http://") || imagePath.StartsWith("https://"))
+                    {
+                        ImageWindow.Source = new BitmapImage(imageUri);
+                        return;
+                    }
+                    else
+                    {
+                        ImageWindow.Source = null;
+                    }
+                }
+                if (currentQuestion.ImagePath == "" || currentQuestion.ImagePath == "null")
+                {
+                        
+                    string? imagePath = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtIpc5OCgEWtPeDNNrQLBbcx7kHRFAIDXjfCehUzfDl41jFin3laL6PXiDEkOFIwB7nZI&usqp=CAU";
+                    Uri ImageUri = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+                    ImageWindow.Source = new BitmapImage(ImageUri);
+                }
+            }
+            else
+            {
+                MessageBox.Show("PlayGamePageText You have mannaged to awnser all questions correctly! try to add some more to play more");
+                myQuiz.LoadQuestionsFromFile();
+                OutOfQuestionsMethod();
+            }
+        }
+        public void OutOfQuestionsMethod()
+        {
+            Page2StartWindow page2StartWindow = new Page2StartWindow(CurrentPlayer);
+            page2StartWindow.Show();
+            this.Close();
 
         }
 

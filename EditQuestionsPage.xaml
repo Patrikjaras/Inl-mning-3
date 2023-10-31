@@ -77,5 +77,20 @@
                  
                  DisplayMemberPath="Statement" SelectionChanged="StatementListBox_SelectionChanged"
                  />
+
+        <Label 
+            Grid.Row="16"
+            Grid.Column="3"
+            Content="Enter image URL"
+            
+            />
+        <TextBox 
+            Grid.Row="17"
+            Grid.Column="3"
+            x:Name="EditUrlTextBox"
+            TextWrapping="Wrap"
+            Width="150"
+            Height="75"
+            />
     </Grid>
 </Window>

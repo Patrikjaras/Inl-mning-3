@@ -45,21 +45,29 @@ namespace Inlämning_3
         {
             PlayGamePage playGamePage = new PlayGamePage(CurrentPlayer);
             playGamePage.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void SpecificQuizButton_Click(object sender, RoutedEventArgs e)
         {
+            myQuiz.LoadQuestionsFromFile();
             ChooseSpecificQuizPage chooseSpecificQuizPage = new ChooseSpecificQuizPage(CurrentPlayer);
             chooseSpecificQuizPage.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void AddOrEditQButton_Click(object sender, RoutedEventArgs e)
         {
             GenerateOrEditQuestionPage generateOrEditQuestionPage = new GenerateOrEditQuestionPage(CurrentPlayer);
             generateOrEditQuestionPage.Show();
-            this.Hide();
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseQuizToPlayPage ChooseQuizToPlayPage = new ChooseQuizToPlayPage(CurrentPlayer);
+            ChooseQuizToPlayPage.Show();
+            this.Close();
         }
     }
 }

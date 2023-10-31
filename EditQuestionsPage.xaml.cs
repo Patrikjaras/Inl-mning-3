@@ -52,9 +52,11 @@ namespace Inlämning_3
                     question.Answers[1] = EditSecondAnswerTextBox.Text;
                     question.Answers[2] = EditThirdAnswerTextBox.Text;
                     question.CorrectAnswer = EditCorrectAwnser();
+                    question.ImagePath = EditUrlTextBox.Text;
 
                     myQuiz.SaveNewQuestionsToFile();
                     MessageBox.Show("Question has been edited.");
+                    EditUrlTextBox.Text.Clone();
                     EnterQNumberToEditTextBox.Clear();
                     EditQuestionTextBox.Clear();
                     EditFirstAnswerTextBox.Clear();
@@ -64,7 +66,7 @@ namespace Inlämning_3
                     EditFirstAnswerCorrectCheckbox.IsChecked = false;
                     EditSecondAnswerCorrectCheckbox.IsChecked = false;
                     EditThirdAnswerCorrectCheckbox.IsChecked = false;
-                        StatementListBox.ItemsSource = Quiz.AllQuestions.ToList();
+                    StatementListBox.ItemsSource = Quiz.AllQuestions.ToList();
                     }
                     catch (Exception)
                     {
@@ -96,6 +98,7 @@ namespace Inlämning_3
                 EditSecondAnswerTextBox.Text = question.Answers[1];
                 EditThirdAnswerTextBox.Text= question.Answers[2];
                 EditCategoryTextBox.Text = question.Category;
+                EditUrlTextBox.Text = question.ImagePath;
                 if (question.CorrectAnswer == 0)
                 {
                     EditFirstAnswerCorrectCheckbox.IsChecked = true;
@@ -166,7 +169,8 @@ namespace Inlämning_3
                 EditSecondAnswerTextBox.Text = selectedQuiz.Answers[1];
                 EditThirdAnswerTextBox.Text = selectedQuiz.Answers[2];
                 EditCategoryTextBox.Text = selectedQuiz.Category;
-                
+                EditUrlTextBox.Text = selectedQuiz.ImagePath;
+
                 if (selectedQuiz.CorrectAnswer == 0)
                 {
                     EditFirstAnswerCorrectCheckbox.IsChecked = true;

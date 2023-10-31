@@ -35,6 +35,11 @@
             </TextBlock>
         </Button>
             <Button Grid.Column="5" Grid.Row="5" Width="100" Content="Add or edit questions!" x:Name="AddOrEditQButton" Height="100" Background="#FF09AFA4" Click="AddOrEditQButton_Click"/>
-
+        <Button 
+            Grid.Column="5"
+            Grid.Row="3"
+            Background="#FF09AFA4" FontWeight="Bold"
+            Content="Play Specific Quiz" Click="Button_Click"
+            />
     </Grid>
 </Window>

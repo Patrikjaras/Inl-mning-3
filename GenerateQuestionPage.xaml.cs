@@ -47,9 +47,10 @@ namespace Inlämning_3
                 string Category = EnterCateGoryTextBox.Text;
                 string statement = EnterQuestionTextBox.Text;
                 int correctAnswer = GetCorrectAnswer();
+                string imagePath = EnterImagePathTextBox.Text;
                 string[] answers = { EnterFirstAnswerTextBox.Text, EnterSecondAnswerTextBox.Text, EnterThirdAnswerTextBox.Text };
 
-                GenerateQuestion.AddQuestion(ID, Category, statement, correctAnswer, answers);
+                GenerateQuestion.AddQuestion(ID, Category, statement, correctAnswer, imagePath, answers);
 
                 MessageBox.Show($"Question has been added. Qustion number is {ID}!");
                 EnterCateGoryTextBox.Clear();
@@ -60,7 +61,7 @@ namespace Inlämning_3
                 FirstAnswerCorrectCheckbox.IsChecked = false;
                 SecondAnswerCorrectCheckbox.IsChecked = false;
                 ThirdAnswerCorrectCheckbox.IsChecked = false;
-                   
+                EnterImagePathTextBox.Clear();
                 }
                 else
                 {

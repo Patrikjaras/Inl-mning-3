@@ -13,12 +13,11 @@ namespace Inlämning_3.Models
 {
     internal class Quiz
     {
-        //private IEnumerable<Question> _iquestions;
-        //kolla om denna måste vara private
+        
         public List<Question> _questions;
 
         private string _title = string.Empty;
-        //public IEnumerable<Question> iQuestions => _iquestions;
+        
         public string Title { get { return _title; } set { _title = value; } }
         
         public static List<Question> AllQuestions = new List<Question>();
@@ -29,6 +28,7 @@ namespace Inlämning_3.Models
             _title = title;
             _questions = new List<Question>(); 
         }
+       
         public Quiz()
         {
             _questions = new List<Question>();
@@ -68,13 +68,7 @@ namespace Inlämning_3.Models
             _questions = AllQuestions;
             Random random = new Random();
             int randomIndex = random.Next(0, _questions.Count);
-            if (_questions.Count == 0)
-            {
-                MessageBox.Show("Well done you mannaged to answer all questions correct, try to create some new quetions to play more");
-                LoadQuestionsFromFile();
-                _questions = AllQuestions;
-               // ChooseSpecificQuizPage.RetunToStartButton_Click();
-            }
+           
             return _questions[randomIndex];
         }
         
@@ -96,9 +90,9 @@ namespace Inlämning_3.Models
                 throw new ArgumentNullException(nameof(question), "question cannot be null");
             }
         }
-        public async void AddQuestion(int id, string category, string statement, int correctAnswer, params string[] answers)
+        public async void AddQuestion(int id, string category, string statement, int correctAnswer,string imagePath, params string[] answers)
         {
-            var newQuestion = new Question(id, category, statement, correctAnswer, answers);
+            var newQuestion = new Question(id, category, statement, correctAnswer, imagePath, answers);
             AllQuestions.Add(newQuestion);
             await SaveNewQuestionsToFile();
         }
@@ -106,7 +100,7 @@ namespace Inlämning_3.Models
         {
             _questions.RemoveAt(index);
             MessageBox.Show("Question removed from Quiz");
-           // SaveQuizezToFile();
+           
 
          
         }
@@ -115,22 +109,16 @@ namespace Inlämning_3.Models
             _questions.Add(question);
             MessageBox.Show("Question added to Quiz");
             SaveQuizezToFile();
-
-          
-
         }
         public void RemoveQuestion(int ID)
         {
+            
             var removeQuestion = _questions.FirstOrDefault(question => question.Id == ID);
             if (removeQuestion != null) 
             { 
                 _questions.Remove(removeQuestion);
             }
-            else
-            {
-                Console.WriteLine("Question not found");
-            }
-           
+
         }
         public int GetNextID()
         {
@@ -196,36 +184,36 @@ namespace Inlämning_3.Models
         }
         public void GenerateQuestions()
         {
-            AddQuestion(1, "football", "What number does Lionel Messi usually wear on his jersey?", 0, new string[] { "10", "7", "14" });
-            AddQuestion(2, "football", "Which team won the FIFA World Cup 2018?", 0, new string[] { "France", "Croatia", "Belgium" });
-            AddQuestion(3, "football", "Who is the world's most expensive football player in terms of transfer fee?", 2, new string[] { "Neymar", "Lionel Messi", "Cristiano Ronaldo" });
-            AddQuestion(4, "football", "Which country is known for the football player Pelé?", 0, new string[] { "Brazil", "Argentina", "Germany" });
-            AddQuestion(5, "football", "Who won the Ballon d'Or in 2021?", 0, new string[] { "Lionel Messi", "Robert Lewandowski", "Mohamed Salah" });
-            AddQuestion(6, "football", "Which football team is known as 'The Red Devils'?", 0, new string[] { "Manchester United", "AC Milan", "Bayern Munich" });
-            AddQuestion(7, "football", "Who is known as 'CR7' in the football world?", 0, new string[] { "Cristiano Ronaldo", "Cesc Fàbregas", "Carlos Tevez" });
-            AddQuestion(8, "football", "Which football club is known for playing at Camp Nou stadium?", 0, new string[] { "FC Barcelona", "Real Madrid", "Manchester United" });
-            AddQuestion(9, "football", "Who is the world's most famous football coach, known as 'The Special One'?", 0, new string[] { "José Mourinho", "Pep Guardiola", "Jürgen Klopp" });
-            AddQuestion(10, "football", "Which national team won Copa America 2021?", 1, new string[] { "Argentina", "Brazil", "Uruguay" });
-            AddQuestion(11, "math", "What is the result of 2 + 3?", 2, new string[] { "4", "6", "5" });
-            AddQuestion(12, "math", "What is the square root of 49?", 0, new string[] { "7", "6", "8" });
-            AddQuestion(13, "math", "What is 9 multiplied by 8?", 0, new string[] { "72", "64", "81" });
-            AddQuestion(14, "math", "What is 15 divided by 3?", 1, new string[] { "3", "5", "6" });
-            AddQuestion(15, "math", "What is the result of 4 squared?", 1, new string[] { "8", "16", "12" });
-            AddQuestion(16, "math", "What is the value of π (pi) to two decimal places?", 0, new string[] { "3.14", "3.16", "3.12" });
-            AddQuestion(17, "math", "What is the sum of the angles in a triangle?", 0, new string[] { "180 degrees", "90 degrees", "270 degrees" });
-            AddQuestion(18, "math", "What is the next prime number after 29?", 2, new string[] { "27", "33", "31" });
-            AddQuestion(19, "math", "What is the area of a square with a side length of 5 units?", 1, new string[] { "20 square units", "25 square units", "15 square units" });
-            AddQuestion(20, "math", "What is the perimeter of a rectangle with length 8 units and width 6 units?", 0, new string[] { "28 units", "32 units", "24 units" });
-            AddQuestion(21, "geography", "What is the capital city of France?", 0, new string[] { "Paris", "London", "Berlin" });
-            AddQuestion(22, "geography", "Which river is the longest in the world?", 1, new string[] { "Nile", "Amazon", "Mississippi" });
-            AddQuestion(23, "geography", "In which continent is the Sahara Desert located?", 0, new string[] { "Africa", "Asia", "South America" });
-            AddQuestion(24, "geography", "Which mountain range spans across several countries including Nepal and Bhutan?", 0, new string[] { "Himalayas", "Andes", "Alps" });
-            AddQuestion(25, "geography", "What is the largest ocean on Earth?", 0, new string[] { "Pacific Ocean", "Atlantic Ocean", "Indian Ocean" });
-            AddQuestion(26, "geography", "Which country is known as the Land of the Rising Sun?", 2, new string[] { "South Korea", "China", "Japan" });
-            AddQuestion(27, "geography", "What is the smallest country in the world by land area?", 0, new string[] { "Vatican City", "Monaco", "Nauru" });
-            AddQuestion(28, "geography", "Which African country is known as the Rainbow Nation?", 0, new string[] { "South Africa", "Nigeria", "Kenya" });
-            AddQuestion(29, "geography", "What is the longest river in Europe?", 0, new string[] { "Volga", "Danube", "Thames" });
-            AddQuestion(30, "geography", "Which country is the southernmost in Africa?", 0, new string[] { "South Africa", "Namibia", "Botswana" });
+            AddQuestion(1, "football", "What number does Lionel Messi usually wear on his jersey?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "10", "7", "14" });
+            AddQuestion(2, "football", "Which team won the FIFA World Cup 2018?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "France", "Croatia", "Belgium" });
+            AddQuestion(3, "football", "Who is the world's most expensive football player in terms of transfer fee?", 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Neymar", "Lionel Messi", "Cristiano Ronaldo" });
+            AddQuestion(4, "football", "Which country is known for the football player Pelé?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Brazil", "Argentina", "Germany" });
+            AddQuestion(5, "football", "Who won the Ballon d'Or in 2021?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Lionel Messi", "Robert Lewandowski", "Mohamed Salah" });
+            AddQuestion(6, "football", "Which football team is known as 'The Red Devils'?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Manchester United", "AC Milan", "Bayern Munich" });
+            AddQuestion(7, "football", "Who is known as 'CR7' in the football world?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Cristiano Ronaldo", "Cesc Fàbregas", "Carlos Tevez" });
+            AddQuestion(8, "football", "Which football club is known for playing at Camp Nou stadium?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "FC Barcelona", "Real Madrid", "Manchester United" });
+            AddQuestion(9, "football", "Who is the world's most famous football coach, known as 'The Special One'?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "José Mourinho", "Pep Guardiola", "Jürgen Klopp" });
+            AddQuestion(10, "football", "Which national team won Copa America 2021?", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIy_juf-LnPOZ20kfKhXlJe-umOk2ltIF65ExvA7qGOaJyqXH2FEnFLkfk9vEm33WtDcI&usqp=CAU", new string[] { "Argentina", "Brazil", "Uruguay" });
+            AddQuestion(11, "math", "What is the result of 2 + 3?", 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "4", "6", "5" });
+            AddQuestion(12, "math", "What is the square root of 49?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "7", "6", "8" });
+            AddQuestion(13, "math", "What is 9 multiplied by 8?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "72", "64", "81" });
+            AddQuestion(14, "math", "What is 15 divided by 3?", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "3", "5", "6" });
+            AddQuestion(15, "math", "What is the result of 4 squared?", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "8", "16", "12" });
+            AddQuestion(16, "math", "What is the value of π (pi) to two decimal places?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "3.14", "3.16", "3.12" });
+            AddQuestion(17, "math", "What is the sum of the angles in a triangle?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "180 degrees", "90 degrees", "270 degrees" });
+            AddQuestion(18, "math", "What is the next prime number after 29?", 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "27", "33", "31" });
+            AddQuestion(19, "math", "What is the area of a square with a side length of 5 units?", 1, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "20 square units", "25 square units", "15 square units" });
+            AddQuestion(20, "math", "What is the perimeter of a rectangle with length 8 units and width 6 units?", 0, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK9jHzSw7Hjj3Skj5L0YP9khcfypw5gpf-BjnCgJkILODSY8Uy8G_BS7-WR6Qxcdzkb_g&usqp=CAU", new string[] { "28 units", "32 units", "24 units" });
+            AddQuestion(21, "geography", "What is the capital city of France?", 0, "", new string[] { "Paris", "London", "Berlin" });
+            AddQuestion(22, "geography", "Which river is the longest in the world?", 1, "", new string[] { "Nile", "Amazon", "Mississippi" });
+            AddQuestion(23, "geography", "In which continent is the Sahara Desert located?", 0, "", new string[] { "Africa", "Asia", "South America" });
+            AddQuestion(24, "geography", "Which mountain range spans across several countries including Nepal and Bhutan?", 0, "", new string[] { "Himalayas", "Andes", "Alps" });
+            AddQuestion(25, "geography", "What is the largest ocean on Earth?", 0, "", new string[] { "Pacific Ocean", "Atlantic Ocean", "Indian Ocean" });
+            AddQuestion(26, "geography", "Which country is known as the Land of the Rising Sun?", 2, "", new string[] { "South Korea", "China", "Japan" });
+            AddQuestion(27, "geography", "What is the smallest country in the world by land area?", 0, "", new string[] { "Vatican City", "Monaco", "Nauru" });
+            AddQuestion(28, "geography", "Which African country is known as the Rainbow Nation?", 0, "", new string[] { "South Africa", "Nigeria", "Kenya" });
+            AddQuestion(29, "geography", "What is the longest river in Europe?", 0, "", new string[] { "Volga", "Danube", "Thames" });
+            AddQuestion(30, "geography", "Which country is the southernmost in Africa?", 0, "", new string[] { "South Africa", "Namibia", "Botswana" });
             }
         public async void GenerateFolder()
         {

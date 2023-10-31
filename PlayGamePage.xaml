@@ -38,11 +38,26 @@
         <Button Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" x:Name="ReturnToHeadPageButton" Content="Return to HeadPage" Background="#FF3446D8" FontWeight="Bold" Click="ReturnToHeadPageButton_Click"/>
         <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" Text="UserName+totalquestions Correct"  x:Name="UserNameAndTotalCorrectQ" FontSize="20" FontWeight="Bold"/>
         <TextBlock Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Text="Question" x:Name="QuestionTextBox" Height="80" FontSize="18" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
-        <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2" x:Name="AwnserButton1" Content="Awnser1" Height="100" Width="150" Background="#FF09AFA4" Click="AwnserButton1_Click" />
+        <Button Grid.Column="3" 
+                Grid.Row="7" 
+                Grid.ColumnSpan="2" 
+                x:Name="AwnserButton1" 
+                Content="Awnser1" 
+                Height="100" Width="150" 
+                Background="#FF09AFA4" 
+                Click="AwnserButton1_Click" />
         <Button Grid.Column="5" Grid.Row="7" Grid.ColumnSpan="2" x:Name="AwnserButton2" Content="Awnser2" Height="100" Width="150" Background="#FF09AFA4" Click="AwnserButton2_Click" />
         <Button Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="2" x:Name="AwnserButton3" Content="Awnser3" Height="100" Width="150" Background="#FF09AFA4" Click="AwnserButton3_Click" />
         <ProgressBar Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" x:Name="ProgressbarPercent" Minimum="0" Maximum="100"/>
         <Button Grid.Column="7" Grid.Row="10" Grid.ColumnSpan="2" Content="Return to Start" x:Name="ReturnToStartButton"  Width="100" Background="#FFC847BE" Click="ReturnToStartButton_Click" />
-
+        <Image 
+            Grid.Column="7"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            x:Name="ImageWindow"
+            MaxWidth="150"
+            MaxHeight="150"
+            />
     </Grid>
 </Window>
