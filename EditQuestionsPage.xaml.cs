@@ -64,6 +64,7 @@ namespace Inlämning_3
                     EditFirstAnswerCorrectCheckbox.IsChecked = false;
                     EditSecondAnswerCorrectCheckbox.IsChecked = false;
                     EditThirdAnswerCorrectCheckbox.IsChecked = false;
+                        StatementListBox.ItemsSource = Quiz.AllQuestions.ToList();
                     }
                     catch (Exception)
                     {

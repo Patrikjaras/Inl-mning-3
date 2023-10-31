@@ -63,7 +63,7 @@
 
         <Button Grid.Column="7" Grid.Row="16" Content="Edit Question." x:Name="AddQuestionButton" Background="#FF09AFA4" Click="EditQuestionButton_Click" />
 
-        <Label Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="3" Content="Enter number of question to edit"/>
+        <Label Grid.Column="7" Grid.Row="4" Grid.ColumnSpan="3" FontFamily="Bold" Content="Enter number of question to edit" VerticalAlignment="Center"/>
         <TextBox Grid.Column="7" Grid.Row="5" Grid.RowSpan="3" x:Name="EnterQNumberToEditTextBox" FontSize="30" TextAlignment="Center"/>
         <Button x:Name="GetQuestionButton" Content ="Get Question" Grid.Column="7" Grid.Row="8" Click="GetQuestionButton_Click"/>
 

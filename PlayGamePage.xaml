@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inlämning_3"
         mc:Ignorable="d"
-        Title="PlayGamePage" Height="500" Width="800">
+        Title="PlayGamePage" Height="500" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

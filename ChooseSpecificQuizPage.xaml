@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inlämning_3"
         mc:Ignorable="d"
-        Title="ChooseSpecificQuizPage" Height="450" Width="700">
+        Title="ChooseSpecificQuizPage" Height="450" Width="950">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

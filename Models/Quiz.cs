@@ -33,7 +33,7 @@ namespace Inlämning_3.Models
         {
             _questions = new List<Question>();
         }
-        public static void GenerateQuizez()
+        public static Task GenerateQuizez()
         {
             Quiz football = new Quiz("football");
             Quiz math = new Quiz("math");
@@ -59,16 +59,23 @@ namespace Inlämning_3.Models
                     geography.AddQuestionToList(question);
                 }
             }
-            return true;
+           return Task.CompletedTask;
             
         }
         public Question GetRandomQuestion()
         {
+            
             _questions = AllQuestions;
             Random random = new Random();
             int randomIndex = random.Next(0, _questions.Count);
+            if (_questions.Count == 0)
+            {
+                MessageBox.Show("Well done you mannaged to answer all questions correct, try to create some new quetions to play more");
+                LoadQuestionsFromFile();
+                _questions = AllQuestions;
+               // ChooseSpecificQuizPage.RetunToStartButton_Click();
+            }
             return _questions[randomIndex];
-           
         }
         
         public Question GetEditQuestion(int ID)
@@ -89,17 +96,17 @@ namespace Inlämning_3.Models
                 throw new ArgumentNullException(nameof(question), "question cannot be null");
             }
         }
-        public void AddQuestion(int id, string category, string statement, int correctAnswer, params string[] answers)
+        public async void AddQuestion(int id, string category, string statement, int correctAnswer, params string[] answers)
         {
             var newQuestion = new Question(id, category, statement, correctAnswer, answers);
             AllQuestions.Add(newQuestion);
-            SaveNewQuestionsToFile();
+            await SaveNewQuestionsToFile();
         }
         public void RemoveQuestionFromQuiz(int index)
         {
             _questions.RemoveAt(index);
             MessageBox.Show("Question removed from Quiz");
-            SaveQuizezToFile();
+           // SaveQuizezToFile();
 
          
         }
@@ -146,7 +153,7 @@ namespace Inlämning_3.Models
             AllQuestions = Dson;
             return AllQuestions;
         }
-        public void SaveQuizezToFile()
+        public Task SaveQuizezToFile()
         {
             
             string folderName = "AppDataTest2";
@@ -156,6 +163,7 @@ namespace Inlämning_3.Models
             
             var Json = JsonConvert.SerializeObject(AllQuizez, Formatting.Indented);
             File.WriteAllText(textFilePath, Json);  
+            return Task.CompletedTask;
         }
         public List<Quiz> LoadQuizezFromFile()
         {
@@ -174,7 +182,7 @@ namespace Inlämning_3.Models
               AllQuizez = Dson;
               return AllQuizez;
         }
-        public void SaveNewQuestionsToFile()
+        public Task SaveNewQuestionsToFile()
         {
             
             string folderName = "AppDataTest2";
@@ -184,7 +192,7 @@ namespace Inlämning_3.Models
 
             var Json = JsonConvert.SerializeObject(AllQuestions, Formatting.Indented);
             File.WriteAllText(textFilePath, Json);
-
+            return Task.CompletedTask;  
         }
         public void GenerateQuestions()
         {
@@ -238,9 +246,9 @@ namespace Inlämning_3.Models
                     string Filepath = Path.Combine(folderPath, "QuestionList.txt");
                     File.WriteAllText(Filepath, Json);
                     GenerateQuestions();
-                    GenerateQuizez();
-                    SaveNewQuestionsToFile();
-                    SaveQuizezToFile();
+                    await GenerateQuizez();
+                    await SaveNewQuestionsToFile();
+                    await SaveQuizezToFile();
                 }
                 else
                 {
