@@ -111,6 +111,7 @@ namespace Inlämning_3
             }
             
         }
+       
         public void RemoveQuestionFromQuiz(int ID)
         {
             var removeQuestion = CurrentQuiz._questions.FirstOrDefault(question => question.Id == ID);
@@ -146,8 +147,6 @@ namespace Inlämning_3
                 UppdateLabel();
                 RemoveQuestionFromQuiz(currentQuestion.Id);
                 GetRandomQuestionQuizPage();
-                
-                
 
             }
             else
@@ -168,8 +167,6 @@ namespace Inlämning_3
                 UppdateLabel();
                 RemoveQuestionFromQuiz(currentQuestion.Id);
                 GetRandomQuestionQuizPage();
-                
-                
             }
             else
             {
@@ -190,8 +187,6 @@ namespace Inlämning_3
                 UppdateLabel();
                 RemoveQuestionFromQuiz(currentQuestion.Id);
                 GetRandomQuestionQuizPage();
-                
-                
             }
             else
             {

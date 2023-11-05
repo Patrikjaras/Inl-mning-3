@@ -45,32 +45,35 @@ namespace Inlämning_3
                 { 
                     try
                     {
-                    int input = int.Parse(EnterQNumberToEditTextBox.Text);
-                    var question = myQuiz.GetEditQuestion(input);
-                    question.Statement = EditQuestionTextBox.Text;
-                    question.Answers[0] = EditFirstAnswerTextBox.Text;
-                    question.Answers[1] = EditSecondAnswerTextBox.Text;
-                    question.Answers[2] = EditThirdAnswerTextBox.Text;
-                    question.CorrectAnswer = EditCorrectAwnser();
-                    question.ImagePath = EditUrlTextBox.Text;
+                          int input = int.Parse(EnterQNumberToEditTextBox.Text);
+                          var question = myQuiz.GetEditQuestion(input);
+                          question.Statement = EditQuestionTextBox.Text;
+                          question.Answers[0] = EditFirstAnswerTextBox.Text;
+                          question.Answers[1] = EditSecondAnswerTextBox.Text;
+                          question.Answers[2] = EditThirdAnswerTextBox.Text;
+                          question.CorrectAnswer = EditCorrectAwnser();
+                          question.ImagePath = EditUrlTextBox.Text;
 
-                    myQuiz.SaveNewQuestionsToFile();
-                    MessageBox.Show("Question has been edited.");
-                    EditUrlTextBox.Text.Clone();
-                    EnterQNumberToEditTextBox.Clear();
-                    EditQuestionTextBox.Clear();
-                    EditFirstAnswerTextBox.Clear();
-                    EditSecondAnswerTextBox.Clear();
-                    EditThirdAnswerTextBox.Clear();
-                    EditCategoryTextBox.Clear();
-                    EditFirstAnswerCorrectCheckbox.IsChecked = false;
-                    EditSecondAnswerCorrectCheckbox.IsChecked = false;
-                    EditThirdAnswerCorrectCheckbox.IsChecked = false;
-                    StatementListBox.ItemsSource = Quiz.AllQuestions.ToList();
+                          myQuiz.CorrectQuizezWhenQuestionEditet(question);
+                          myQuiz.SaveNewQuestionsToFile();
+                          MessageBox.Show("Question has been edited.");
+                         
+                          EditUrlTextBox.Clear();
+                          EnterQNumberToEditTextBox.Clear();
+                          EditQuestionTextBox.Clear();
+                          EditFirstAnswerTextBox.Clear();
+                          EditSecondAnswerTextBox.Clear();
+                          EditThirdAnswerTextBox.Clear();
+                          EditCategoryTextBox.Clear();
+                          EditFirstAnswerCorrectCheckbox.IsChecked = false;
+                          EditSecondAnswerCorrectCheckbox.IsChecked = false;
+                          EditThirdAnswerCorrectCheckbox.IsChecked = false;
+                              
+                          StatementListBox.ItemsSource = Quiz.AllQuestions.ToList();
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Input is not a number");
+                        MessageBox.Show("Input is not a number4312");
                     }
                 }
                 else
@@ -88,7 +91,7 @@ namespace Inlämning_3
         }
 
         private void GetQuestionButton_Click(object sender, RoutedEventArgs e)
-             {
+        {
             try
             {
                 int input = int.Parse(EnterQNumberToEditTextBox.Text);
@@ -114,7 +117,7 @@ namespace Inlämning_3
             }
             catch (Exception)
             {
-                MessageBox.Show("input is not a number");
+                MessageBox.Show("input is not a valid number");
             }
         }
         public int EditCorrectAwnser()

@@ -62,6 +62,22 @@ namespace Inlämning_3.Models
            return Task.CompletedTask;
             
         }
+        public void CorrectQuizezWhenQuestionEditet(Question questionToEdit)
+        {
+            foreach (Quiz List in AllQuizez) 
+            {
+                foreach (Question question in List._questions.ToList())
+                {
+                    if (question.Id == (questionToEdit.Id))
+                    {
+                        List._questions.Remove(question);
+                        List._questions.Add(questionToEdit);
+                    }
+                }
+           
+            }
+            SaveQuizezToFile();
+        }
         public Question GetRandomQuestion()
         {
             
@@ -75,9 +91,18 @@ namespace Inlämning_3.Models
         public Question GetEditQuestion(int ID)
         {
             var questionToEdit = AllQuestions.FirstOrDefault(question => question.Id == ID);
-            MessageBox.Show(questionToEdit.Statement);
+            if (questionToEdit != null)
+            { 
 
-            return questionToEdit;
+               MessageBox.Show(questionToEdit.Statement);
+               return questionToEdit;
+            }
+            else
+            {
+                MessageBox.Show("Question number does not exist");
+                return _questions[0];
+            }
+           
         }
         public void AddQuestionToList(Question question)
         { 
@@ -99,10 +124,8 @@ namespace Inlämning_3.Models
         public void RemoveQuestionFromQuiz(int index)
         {
             _questions.RemoveAt(index);
+            SaveQuizezToFile(); 
             MessageBox.Show("Question removed from Quiz");
-           
-
-         
         }
         public void AddQuestionToQuiz(Question question)
         {

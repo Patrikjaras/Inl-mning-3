@@ -17,15 +17,7 @@ namespace Inlämning_3.Models
         
 
 
-     //   public Question(int id, string category, string statement, int correctanswer, string[] answers)
-     //   {
-     //       Id = id;
-     //       Category = category;
-     //       Statement = statement;
-     //       CorrectAnswer = correctanswer;
-     //       Answers = answers;
-     //
-     //   }
+     
         public Question(int id, string category, string statement, int correctanswer, string imagePath, string[] answers )
         {
             Id = id;

@@ -76,7 +76,7 @@
                  MaxWidth="350"
                  Height="150"
             x:Name="QuestionsNotInQuizListBox" 
-            SelectionChanged="QuestionsNotInQuizListBox_SelectionChanged">
+            >
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -106,7 +106,7 @@
                 Grid.Column="4" 
                 Grid.Row="3"
                 x:Name="SpecificQuizQuestionsListBox"
-                Height=" 150" SelectionChanged="SpecificQuizQuestionsListBox_SelectionChanged">
+                Height=" 150" >
                    <ListBox.ItemTemplate>
                        <DataTemplate>
                            <TextBlock Text="{Binding Statement}"/>

@@ -14,7 +14,7 @@ namespace Inlämning_3
     {
         private Player CurrentPlayer;
         private Quiz CurrentQuiz;
-        private Question CurrentQuestion;
+        
        
         public ChooseSpecificQuizPage(Player player)
         {
@@ -43,17 +43,6 @@ namespace Inlämning_3
             SpecificQuizQuestionsListBox.ItemsSource = CurrentQuiz._questions;
             
         }
-
-        private void SpecificQuizQuestionsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void QuestionsNotInQuizListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void AddQuestionToQuizButton_Click(object sender, RoutedEventArgs e)
         {
             
